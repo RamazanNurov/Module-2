@@ -32,6 +32,25 @@ class My_button:
         self.value_name = self.win.entry_name.value.get()
         self.print_file()
 
+    def calculate_bmi(self):
+        height = float(self.value_height) / 100
+        weight = float(self.value_weight)
+        bmi = weight / (height ** 2)
+        self.win.label_output1.label.config(text='ИМТ: {:.2f}'.format(bmi))
+        if bmi <= 16:
+            self.win.label_output2.label.config(text='Выраженный дефицит массы тела')
+        elif bmi <= 18.5:
+            self.win.label_output2.label.config(text='Недостаточная масса тела')
+        elif bmi <= 24.99:
+            self.win.label_output2.label.config(text='Норма')
+        elif bmi < 30:
+            self.win.label_output2.label.config(text='Избыточная масса тела')
+        elif bmi <= 35:
+            self.win.label_output2.label.config(text='Ожирение первой степени')
+        elif bmi <= 40:
+            self.win.label_output2.label.config(text='Ожирение второй степени')
+        else:
+            self.win.label_output2.label.config(text='Морбидное')
 
     def print_file(self):
         file = open('new_otchet.txt', 'a', encoding='utf8')
@@ -66,31 +85,10 @@ class My_window:
         self.label_height = My_label('Рост:', 'Arial 18', '#F00044', 20, 100)
         self.label_weight = My_label('Вес:', 'Arial 18', '#F00044', 20, 150)
         self.label_name = My_label('ФИО:', 'Arial 18', '#F00044', 20, 200)
-        self.label_name = My_label('ИМТ:', 'Arial 18', '#F00044', 350, 100)
+        self.label_output1 = My_label('ИМТ:', 'Arial 18', '#F00044', 350, 100)
+        self.label_output2 = My_label('', 'Arial 18', '#F00044', 350, 130)
 
-    def getIMT(self):
 
-        self.height1 = self.value_height
-        self.height1 /= 100
-        self.weight1 = self.value_weight
-
-        self.imt = self.weight1 / (self.height1 ** 2)
-        print(round(imt,3))
-        if self.imt <= 16:
-            print('Выраженный дефицит массы тела')
-        elif self.imt <= 18.5:
-            print('Недостаточная масса тела')
-        elif self.imt <= 24.99:
-            print('Норма')
-        elif self.imt < 30:
-            print('Избыточная масса тела')
-        elif self.imt <= 35:
-            print('Ожирение первой степени')
-        elif self.imt <= 40:
-            print('Ожирение второй степени')
-        else:
-            print('Морбидное')
-            
     def __new_entry(self):
         self.entry_height = My_entry('Arial 18', 90, 100, 200)
         self.entry_weight = My_entry('Arial 18', 90, 150, 200)
