@@ -31,6 +31,7 @@ class My_button:
         self.value_weight = self.win.entry_weight.value.get()
         self.value_name = self.win.entry_name.value.get()
         self.print_file()
+        self.calculate_bmi()
 
     def calculate_bmi(self):
         height = float(self.value_height) / 100
